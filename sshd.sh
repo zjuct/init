@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
+
 set -e
 
 sudo chmod 777 /tmp
@@ -15,8 +17,6 @@ mkdir -p /run/sshd
 /usr/sbin/sshd -h ~/.ssh/ssh_host_rsa_key -p 10010
 
 echo "ssh server started at port 10010"
-
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 
 PUB_KEY="$SCRIPT_DIR/config/id_rsa.pub"
 if [ -f "$PUB_KEY" ]; then
